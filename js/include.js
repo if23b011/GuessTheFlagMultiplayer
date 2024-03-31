@@ -5,18 +5,17 @@ $(document).ready(function () {
     // Footer einfügen
     $("#footer").load("../inc/footer.html");
 
-    // Get the value of the 'page' parameter from the URL
-    const urlParams = new URLSearchParams(window.location.search);
-    const page = urlParams.get("page");
+    // Get the value of the "page" parameter from the URL
+    const page = new URLSearchParams(window.location.search).get("page");
 
-    // Load specific pages corresponding to the 'page' parameter
+    // Load specific pages corresponding to the "page" parameter
 
     var pages = {
         home: "../pages/home.html",
-        about: "../pages/about.html",
-        contact: "../pages/contact.html",
         imprint: "../pages/imprint.html",
         faqs: "../pages/faqs.html",
+        signUp: "../pages/signUp.html",
+        signIn: "../pages/signIn.html",
     };
     if (page === null) {
         window.location = "index.html?page=home";

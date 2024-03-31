@@ -8,6 +8,11 @@ body {
 
 h1 {
   text-align: center;
-  margin-top: 5rem;
-  color: #fff;
+}
+
+#content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
