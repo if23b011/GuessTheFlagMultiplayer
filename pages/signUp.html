@@ -10,8 +10,8 @@
     .card {
         border-radius: 10px;
         box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.3);
-        width: 400px;
-        height: 400px;
+        width: 500px;
+        height: 670px;
         background-color: #ffffff;
         padding: 10px 30px;
     }
@@ -51,6 +51,10 @@
         color: #4796ff;
         text-decoration: none;
     }
+
+    p {
+        color: red;
+    }
 </style>
 
 <div class="container">
@@ -60,12 +64,20 @@
             <span>Sie haben bereits ein Konto? <a href="index.html?page=signIn">Sign In</a></span>
         </div>
         <div class="form">
-            <form action="/register" method="post">
-                <input type="text" name="username" id="username" placeholder="UserName" />
-                <input type="email" name="email" placeholder="Email" id="email" />
-                <input type="password" name="password" placeholder="Password" id="password" />
-                <button>Sign Up</button>
+            <form id="signup-form">
+                <input type="text" name="username" id="username" placeholder="Username" />
+                <input type="text" name="email" placeholder="Email" id="email" />
+                <input type="password" name="password" placeholder="Passwort" id="password" />
+                <input type="password" name="passwordConfirm" placeholder="Passwort wiederholen" id="passwordConfirm" />
+                <p id="lengthError">Das Passwort muss mindestens 8 Zeichen lang sein</p>
+                <p id="upperCaseError">Ein Großbuchstabe muss enthalten sein</p>
+                <p id="lowerCaseError">Ein Kleinbuchstabe muss enthalten sein</p>
+                <p id="numberError">Eine Zahl muss enthalten sein</p>
+                <p id="specialCharsError">Ein Sonderzeichen muss enthalten sein</p>
+                <p id="passwordConfirmError">Die Passwörter müssen übereinstimmen</p>
+                <button type="submit">Sign Up</button>
             </form>
         </div>
     </div>
 </div>
+<script src="../js/signUp.js" type="module"></script>
