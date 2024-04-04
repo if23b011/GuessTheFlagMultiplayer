@@ -72,9 +72,8 @@ $(document).ready(function () {
 
         const auth = getAuth();
         createUserWithEmailAndPassword(auth, email, password)
-            .then((userCredential) => {
-                const user = userCredential.user;
-                window.location.href = "index.html?page=signIn";
+            .then(() => {
+                window.location.href = "index.html?page=home";
             })
             .catch((error) => {
                 const errorCode = error.code;

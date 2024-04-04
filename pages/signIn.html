@@ -1,69 +1,19 @@
-<style>
-    .container {
-        height: 100vh;
-        width: 100%;
-        align-items: center;
-        display: flex;
-        justify-content: center;
-    }
-
-    .card {
-        border-radius: 10px;
-        box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.3);
-        width: 400px;
-        height: 300px;
-        background-color: #ffffff;
-        padding: 10px 30px;
-    }
-
-    .card_title {
-        text-align: center;
-        padding: 10px;
-    }
-
-    .card_title h1 {
-        font-size: 26px;
-        font-weight: bold;
-    }
-
-    .form input {
-        margin: 10px 0;
-        width: 100%;
-        background-color: #e2e2e2;
-        border: none;
-        outline: none;
-        padding: 12px 20px;
-        border-radius: 4px;
-    }
-
-    .form button {
-        background-color: #4796ff;
-        color: #ffffff;
-        font-size: 16px;
-        outline: none;
-        border-radius: 5px;
-        border: none;
-        padding: 8px 15px;
-        width: 100%;
-    }
-
-    .card a {
-        color: #4796ff;
-        text-decoration: none;
-    }
-</style>
-
 <div class="container">
-    <div class="card">
-        <div class="card_title">
-            <h1>Sign In</h1>
-            <span>Noch kein Konto? <a href="index.html?page=signUp">Sign Up</a></span>
-        </div>
-        <div class="form">
-            <form id="signin-form">
-                <input type="email" name="email" placeholder="Email" id="email" />
-                <input type="password" name="password" placeholder="Password" id="password" />
-                <button>Sign In</button>
+    <div class="row justify-content-center">
+        <div class="col-lg-6">
+            <form id="signin-form"
+                style="background-color: white; padding: 10px; border: 2px solid black; border-radius: 10px;">
+                <h1 class="text-center">Sign Up</h1>
+                <p class="text-center">Sie haben noch kein Konto? <a href="index.html?page=signUp">Sign Up</a></p>
+                <div class="mb-3">
+                    <input type="email" name="email" placeholder="Email" id="email" class="form-control" />
+                </div>
+                <div class="mb-3">
+                    <input type="password" name="password" placeholder="Password" id="password" class="form-control" />
+                </div>
+                <div class="d-flex justify-content-center mb-3">
+                    <button type="submit" class="btn btn-primary w-50">Sign In</button>
+                </div>
             </form>
         </div>
     </div>
