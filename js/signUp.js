@@ -7,7 +7,7 @@ $(document).ready(function () {
     var upperCase = new RegExp("[A-Z]");
     var lowerCase = new RegExp("[a-z]");
     var numbers = new RegExp("[0-9]");
-    var specialChars = new RegExp("[!@#\$%\^&\*]");
+    var specialChars = new RegExp("[!@#$%^&*]");
     var minLength = 8;
     function checkPasswordStrength() {
         var password = $("#password").val();
@@ -64,7 +64,6 @@ $(document).ready(function () {
             return;
         }
 
-
         if (username == "") {
             alert("Bitte geben Sie einen Benutzernamen ein.");
             return;
@@ -98,20 +97,20 @@ function validatePassword(password) {
     var upperCase = new RegExp("[A-Z]");
     var lowerCase = new RegExp("[a-z]");
     var numbers = new RegExp("[0-9]");
-    var specialChars = new RegExp("[!@#\$%\^&\*]");
+    var specialChars = new RegExp("[!@#$%^&*]");
     var minLength = 8;
     var password = $("#password").val();
     var passwordConfirm = $("#passwordConfirm").val();
-    if (password.length >= minLength
-        && upperCase.test(password)
-        && lowerCase.test(password)
-        && numbers.test(password)
-        && specialChars.test(password)
-        && password == passwordConfirm) {
+    if (
+        password.length >= minLength &&
+        upperCase.test(password) &&
+        lowerCase.test(password) &&
+        numbers.test(password) &&
+        specialChars.test(password) &&
+        password == passwordConfirm
+    ) {
         return true;
     } else {
         return false;
     }
 }
-
-

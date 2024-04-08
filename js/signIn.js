@@ -1,4 +1,7 @@
-import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js";
+import {
+    getAuth,
+    signInWithEmailAndPassword,
+} from "https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js";
 
 $(document).ready(function () {
     // Formular-Submit-Event
