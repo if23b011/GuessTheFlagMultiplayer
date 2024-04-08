@@ -6,7 +6,7 @@ const firebaseConfig = {
     projectId: "guess-the-flag-multiplayer",
     storageBucket: "guess-the-flag-multiplayer.appspot.com",
     messagingSenderId: "783358276815",
-    appId: "1:783358276815:web:d6cb71a947ac78f2db73ba"
+    appId: "1:783358276815:web:d6cb71a947ac78f2db73ba",
 };
 
 // Firebase initialisieren

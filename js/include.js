@@ -16,6 +16,7 @@ $(document).ready(function () {
         faqs: "../pages/faqs.html",
         signUp: "../pages/signUp.html",
         signIn: "../pages/signIn.html",
+        menu: "../pages/menu.html",
     };
     if (page === null) {
         window.location = "index.html?page=home";

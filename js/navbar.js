@@ -6,8 +6,7 @@ const auth = getAuth();
 onAuthStateChanged(auth, (user) => {
     if (user) {
         // User is signed in.
-        var email = user.email;
-        document.getElementById("profile").innerText = email;
+        document.getElementById("profile").innerText = user.email;
     } else {
         // No user is signed in.
         document.getElementById("profile").innerText = "Not logged in";
