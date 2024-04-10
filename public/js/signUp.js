@@ -3,6 +3,11 @@ import {
     getAuth,
     createUserWithEmailAndPassword,
 } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js";
+import {
+    getFirestore,
+    collection,
+    addDoc,
+} from "https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js";
 $(document).ready(function () {
     var upperCase = new RegExp("[A-Z]");
     var lowerCase = new RegExp("[a-z]");
@@ -71,8 +76,20 @@ $(document).ready(function () {
 
         const auth = getAuth();
         createUserWithEmailAndPassword(auth, email, password)
-            .then(() => {
-                window.location.href = "index.html?page=home";
+            .then(async () => {
+                try {
+                    const docRef = await addDoc(
+                        collection(getFirestore(), "users"),
+                        {
+                            username: username,
+                            email: email,
+                        }
+                    );
+                    console.log("Document written with ID: ", docRef.id);
+                } catch (e) {
+                    console.error("Error adding document: ", e);
+                }
+                //window.location.href = "index.html?page=home";
             })
             .catch((error) => {
                 const errorCode = error.code;
