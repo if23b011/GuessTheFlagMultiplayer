@@ -17,6 +17,7 @@ $(document).ready(function () {
         signUp: "../pages/signUp.html",
         signIn: "../pages/signIn.html",
         menu: "../pages/menu.html",
+        flags: "../pages/flags.html",
     };
     if (page === null) {
         window.location = "index.html?page=home";
