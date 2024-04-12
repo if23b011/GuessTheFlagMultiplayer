@@ -79,7 +79,7 @@ $(document).ready(function () {
             .then(async () => {
                 try {
                     const docRef = await addDoc(
-                        collection(getFirestore(), "users"),
+                        collection(getFirestore(app), "users"),
                         {
                             username: username,
                             email: email,
