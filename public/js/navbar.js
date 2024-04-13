@@ -4,23 +4,27 @@ import {
 } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js";
 import {
     getFirestore,
-    doc,
-    getDoc,
+    collection,
+    query,
+    where,
+    getDocs,
 } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js";
 
 const auth = getAuth();
-const db = getFirestore();
+const firestore = getFirestore();
 
 onAuthStateChanged(auth, async (user) => {
     if (user) {
         // User is signed in.
-        const userDoc = await getDoc(doc(db, "users", user.uid));
-        if (userDoc.exists()) {
-            const userData = userDoc.data();
+        const q = query(
+            collection(firestore, "users"),
+            where("email", "==", user.email)
+        );
+        const querySnapshot = await getDocs(q);
+        querySnapshot.forEach((doc) => {
+            const userData = doc.data();
             document.getElementById("profile").innerText = userData.username;
-        } else {
-            console.log("User data not found");
-        }
+        });
     } else {
         // No user is signed in.
         document.getElementById("profile").innerText = "Not logged in";
