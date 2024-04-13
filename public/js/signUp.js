@@ -75,11 +75,6 @@ $(document).ready(function () {
             return;
         }
 
-        const getUsername = getDocs(collection(db, "users"));
-        getUsername.forEach((doc) => {
-            console.log(`${doc.id} => ${doc.data(username)}`);
-        });
-
         const auth = getAuth();
         createUserWithEmailAndPassword(auth, email, password)
             .then(async () => {
