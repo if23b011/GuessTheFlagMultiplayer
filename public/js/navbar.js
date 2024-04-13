@@ -2,11 +2,29 @@ import {
     getAuth,
     onAuthStateChanged,
 } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js";
+import {
+    getFirestore,
+    collection,
+    query,
+    where,
+    getDocs,
+} from "https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js";
+
 const auth = getAuth();
-onAuthStateChanged(auth, (user) => {
+const firestore = getFirestore();
+
+onAuthStateChanged(auth, async (user) => {
     if (user) {
         // User is signed in.
-        document.getElementById("profile").innerText = user.email;
+        const q = query(
+            collection(firestore, "users"),
+            where("email", "==", user.email)
+        );
+        const querySnapshot = await getDocs(q);
+        querySnapshot.forEach((doc) => {
+            const userData = doc.data();
+            document.getElementById("profile").innerText = userData.username;
+        });
     } else {
         // No user is signed in.
         document.getElementById("profile").innerText = "Not logged in";
