@@ -6,13 +6,14 @@ import {
 import {
     getFirestore,
     collection,
+    getDocs,
     addDoc,
 } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js";
 $(document).ready(function () {
     var upperCase = new RegExp("[A-Z]");
     var lowerCase = new RegExp("[a-z]");
     var numbers = new RegExp("[0-9]");
-    var specialChars = new RegExp("[!@#$%^&*]");
+    var specialChars = new RegExp("[!@#$%^&.*]");
     var minLength = 8;
     function checkPasswordStrength() {
         var password = $("#password").val();
@@ -114,7 +115,7 @@ function validatePassword(password) {
     var upperCase = new RegExp("[A-Z]");
     var lowerCase = new RegExp("[a-z]");
     var numbers = new RegExp("[0-9]");
-    var specialChars = new RegExp("[!@#$%^&*]");
+    var specialChars = new RegExp("[!@#$%^&.*]");
     var minLength = 8;
     var password = $("#password").val();
     var passwordConfirm = $("#passwordConfirm").val();
