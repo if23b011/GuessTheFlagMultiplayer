@@ -43,7 +43,7 @@ $(document).ready(function () {
         } else {
             $("#specialCharsError").css("color", "red");
         }
-        if (password == passwordConfirm) {
+        if (password == passwordConfirm && password != "") {
             $("#passwordConfirmError").css("color", "#90ee90");
         } else {
             $("#passwordConfirmError").css("color", "red");
@@ -52,7 +52,7 @@ $(document).ready(function () {
 
     $("#password, #passwordConfirm").on("keyup", checkPasswordStrength);
     // Formular-Submit-Event
-    $("#signup-form").submit(function (e) {
+    $("#signup-form").submit(async function (e) {
         e.preventDefault();
 
         // Formular-Daten
@@ -76,7 +76,29 @@ $(document).ready(function () {
         }
 
         const db = getFirestore(app);
-        const getUsername = getDocs(collection(db, "users"));
+        const getUserData = collection(db, "users");
+        const querySnapshot = await getDocs(getUserData);
+        let emailExists = false;
+        let usernameExists = false;
+
+        querySnapshot.forEach((doc) => {
+            if (doc.data().email == email) {
+                emailExists = true;
+            }
+            if (doc.data().username == username) {
+                usernameExists = true;
+            }
+        });
+
+            if (emailExists) {
+                alert("Email-Adresse bereits registriert.");
+                return;
+            }
+
+            if (usernameExists) {
+                alert("Benutzername bereits vergeben.");
+                return;
+            }
 
         const auth = getAuth();
         createUserWithEmailAndPassword(auth, email, password)
