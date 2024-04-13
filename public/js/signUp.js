@@ -74,6 +74,9 @@ $(document).ready(function () {
             return;
         }
 
+        const db = getFirestore(app);
+        const getUsername = getDocs(collection(db, "users"));
+
         const auth = getAuth();
         createUserWithEmailAndPassword(auth, email, password)
             .then(async () => {
