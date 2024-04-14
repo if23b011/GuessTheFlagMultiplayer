@@ -18,6 +18,7 @@ $(document).ready(function () {
         signIn: "../pages/signIn.html",
         menu: "../pages/menu.html",
         flags: "../pages/flags.html",
+        createGame: "../pages/createGame.html",
     };
     if (page === null) {
         window.location = "index.html?page=home";
