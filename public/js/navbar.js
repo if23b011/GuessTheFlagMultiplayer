@@ -28,21 +28,5 @@ onAuthStateChanged(auth, async (user) => {
     } else {
         // No user is signed in.
         document.getElementById("profile").innerText = "Not logged in";
-        document.getElementById('signOutButton').style.display = 'none';
-    }
-});
-
-// signOut
-document.addEventListener('DOMContentLoaded', () => {
-    const signOutBtn = document.getElementById('signOutButton');
-    if(signOutBtn){
-        signOutBtn.addEventListener('click', () => {
-            signOut(auth).then(() => {
-                console.log('User signed out.');
-                window.location.href = 'index.html?page=signIn';
-            }).catch((error) => {
-                console.error('Sign Out Error', error);
-            });
-        });
     }
 });
