@@ -90,15 +90,15 @@ $(document).ready(function () {
             }
         });
 
-            if (emailExists) {
-                alert("Email-Adresse bereits registriert.");
-                return;
-            }
+        if (emailExists) {
+            alert("Email-Adresse bereits registriert.");
+            return;
+        }
 
-            if (usernameExists) {
-                alert("Benutzername bereits vergeben.");
-                return;
-            }
+        if (usernameExists) {
+            alert("Benutzername bereits vergeben.");
+            return;
+        }
 
         const auth = getAuth();
         createUserWithEmailAndPassword(auth, email, password)
