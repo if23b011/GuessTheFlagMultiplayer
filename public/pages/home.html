@@ -2,16 +2,26 @@
     class="d-flex justify-content-center align-items-center"
     style="height: 75vh"
 >
-    <div class="card" style="width: 18rem">
-        <img src="./img/logo.png" class="card-img-top" alt="mulitplayer" />
+    <div class="card bg-black" style="width: 18rem">
         <div class="card-body">
+            <img src="img/logo.png" class="card-img-top" alt="mulitplayer" />
             <div
                 class="d-flex flex-column align-items-center justify-content-center"
             >
-                <h1 class="card-title">Guess The Flags</h1>
-                <a href="index.html?page=flags" class="btn btn-primary"
-                    >Spielen</a
+                <h1 class="card-title" style="color: white">Guess The Flags</h1>
+                <a
+                    href="index.html?page=createGame"
+                    id="createGame"
+                    class="btn btn-primary"
                 >
+                    Spiel erstellen
+                </a>
+                <h1 style="color: white">oder</h1>
+                <input
+                    type="text"
+                    class="form-control mt-3"
+                    placeholder="Game ID eingeben"
+                />
             </div>
         </div>
     </div>
