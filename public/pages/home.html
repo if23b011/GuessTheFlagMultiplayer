@@ -17,11 +17,22 @@
                     Spiel erstellen
                 </a>
                 <h1 style="color: white">oder</h1>
-                <input
-                    type="text"
-                    class="form-control mt-3"
-                    placeholder="Game ID eingeben"
-                />
+                <form action="index.html" method="GET">
+                    <input type="hidden" name="page" value="game" />
+                    <input
+                        type="text"
+                        class="form-control mt-3"
+                        placeholder="Game ID eingeben"
+                        id="gameId"
+                        name="gameID"
+                    />
+                    <button
+                        type="submit"
+                        class="btn btn-primary mt-3 d-flex justify-content-center mx-auto"
+                    >
+                        Spiel beitreten
+                    </button>
+                </form>
             </div>
         </div>
     </div>

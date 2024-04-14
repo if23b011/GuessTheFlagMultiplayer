@@ -19,6 +19,7 @@ $(document).ready(function () {
         menu: "../pages/menu.html",
         flags: "../pages/flags.html",
         createGame: "../pages/createGame.html",
+        game: "../pages/game.html",
     };
     if (page === null) {
         window.location = "index.html?page=home";
