@@ -24,6 +24,7 @@ onAuthStateChanged(auth, async (user) => {
             document.getElementById("profile").innerText = userData.username;
         });
         document.getElementById("signOutButton").style.display = "block";
+        document.getElementById("signUp").style.display = "none";
     } else {
         document.getElementById("profile").style.display = "none";
         document.getElementById("signOutButton").style.display = "none";
