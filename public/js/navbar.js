@@ -1,7 +1,6 @@
 import {
     getAuth,
     onAuthStateChanged,
-    signOut // Import für signOut hinzufügen
 } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js";
 import {
     getFirestore,
@@ -24,9 +23,9 @@ onAuthStateChanged(auth, async (user) => {
             const userData = doc.data();
             document.getElementById("profile").innerText = userData.username;
         });
-        document.getElementById('signOutButton').style.display = 'block';
+        document.getElementById("signOutButton").style.display = "block";
     } else {
-        // No user is signed in.
-        document.getElementById("profile").innerText = "Not logged in";
+        document.getElementById("profile").style.display = "none";
+        document.getElementById("signOutButton").style.display = "none";
     }
 });
