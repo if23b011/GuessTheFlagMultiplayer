@@ -18,8 +18,10 @@ document.getElementById("createGameWithSettings").addEventListener("click", asyn
     }
     const gameRef = await addDoc(collection(db, "games"), {
         flags: gameID,
+        count: amountOfFlags,
     });
     console.log("Game created with ID: ", gameRef.id);
+    console.log(amountOfFlags);
     setTimeout(() => {
         window.location.href = "index.html?page=game&gameID=" + gameRef.id;
     }, 1000);
