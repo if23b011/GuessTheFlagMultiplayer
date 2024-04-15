@@ -115,7 +115,7 @@ $(document).ready(function () {
                 } catch (e) {
                     console.error("Error adding document: ", e);
                 }
-                //window.location.href = "index.html?page=home";
+                window.location.href = "index.html?page=home";
             })
             .catch((error) => {
                 const errorCode = error.code;
