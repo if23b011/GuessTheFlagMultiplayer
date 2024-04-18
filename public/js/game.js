@@ -12,42 +12,68 @@ const game = gameRef.docs.find((doc) => doc.id === gameID).data();
 const flags = game.flags.match(/.{1,2}/g);
 
 const flagRef = await getDocs(collection(db, "flags"));
-const flagData = flagRef.docs.find((doc) => doc.data().id === flags[0]).data();
-
-const randomIndex = Math.floor(Math.random() * flagRef.size);
-const randomFlag = flagRef.docs[randomIndex].data();
+var flagData = flagRef.docs.find((doc) => doc.data().id === flags[0]).data();
 
 var index = 0;
-var points = 0;
-const flag1 = document.getElementById("flag1");
-const flag2 = document.getElementById("flag2");
-const flag3 = document.getElementById("flag3");
-const flag4 = document.getElementById("flag4");
-
-flag1.innerHTML = flagData.name;
-flag2.innerHTML = randomFlag.name;
-flag3.innerHTML = randomFlag.name;
-flag4.innerHTML = randomFlag.name;
+if (index == 0) {
+    const flagElement = document.getElementById("flags");
+    const startButton = document.createElement("button");
+    startButton.classList.add("btn", "btn-primary");
+    startButton.innerHTML = "Start";
+    flagElement.appendChild(startButton);
+    startButton.addEventListener("click", function () {
+        startButton.style.display = "none";
+        showNextFlag();
+        for (let i = 1; i <= 4; i++) {
+            const flag = document.getElementById("flag" + i);
+            flag.style.display = "block";
+        }
+    });
+}
 
 const buttonIds = ["flag1", "flag2", "flag3", "flag4"];
-
 buttonIds.forEach((buttonId) => {
     document.getElementById(buttonId).addEventListener("click", showNextFlag);
 });
 
+var score = 0;
 function showNextFlag() {
+    console.log("showNextFlag");
+    if (index < flags.length) {
+        flagData = flagRef.docs
+            .find((doc) => doc.data().id === flags[index])
+            .data();
+        const flagElement = document.getElementById("flags");
+        flagElement.innerHTML = "";
+        const img = document.createElement("img");
+        img.src = "../img/flags/" + flagData.name + ".png";
+        img.alt = flagData.name;
+        img.style.width = "500px";
+        flagElement.appendChild(img);
+    } else if (index == flags.length) {
+        const flagElement = document.getElementById("flags");
+        flagElement.innerHTML = "";
+        const h1 = document.createElement("h1");
+        h1.innerHTML = "Game Over!";
+        flagElement.appendChild(h1);
+        for (let i = 1; i <= 4; i++) {
+            const flag = document.getElementById("flag" + i);
+            flag.style.display = "none";
+        }
+    }
+    const randomIndex = Math.floor(Math.random() * 4) + 1;
+    console.log(randomIndex);
+    const correctButton = document.getElementById("flag" + randomIndex);
+    correctButton.innerHTML = flagData.name;
+    const wrongButtons = buttonIds.filter((id) => id !== correctButton.id);
+    wrongButtons.forEach((id) => {
+        const wrongFlag =
+            flagRef.docs[Math.floor(Math.random() * flagRef.size)].data();
+        document.getElementById(id).innerHTML = wrongFlag.name;
+    });
+    correctButton.addEventListener("click", function () {
+        score++;
+        document.getElementById("score").innerHTML = "Score: " + score;
+    });
     index++;
-    const nextFlagData = flagRef.docs
-        .find((doc) => doc.data().id === flags[index])
-        .data();
-    img.src = "../img/flags/" + nextFlagData.name + ".png";
-    img.alt = nextFlagData.name;
-    flag1.innerHTML = nextFlagData.name;
 }
-const flagElement = document.createElement("div");
-const img = document.createElement("img");
-img.src = "../img/flags/" + flagData.name + ".png";
-img.alt = flagData.name;
-img.style.width = "180px";
-document.querySelector(".flags").appendChild(flagElement);
-flagElement.appendChild(img);
