@@ -15,6 +15,8 @@ const flagRef = await getDocs(collection(db, "flags"));
 var flagData = flagRef.docs.find((doc) => doc.data().id === flags[0]).data();
 
 var index = 0;
+var timer = 0;
+var intervalId = null;
 if (index == 0) {
     const flagElement = document.getElementById("flags");
     const startButton = document.createElement("button");
@@ -23,6 +25,10 @@ if (index == 0) {
     flagElement.appendChild(startButton);
     startButton.addEventListener("click", function () {
         startButton.style.display = "none";
+        intervalId = setInterval(function() {
+            timer++;
+            console.log(timer);
+        }, 1000);
         showNextFlag();
         for (let i = 1; i <= 4; i++) {
             const flag = document.getElementById("flag" + i);
