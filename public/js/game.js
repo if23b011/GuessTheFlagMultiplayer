@@ -12,43 +12,43 @@ const gameDoc = gameRef.docs.find((doc) => doc.id === gameID);
 
 if (!gameDoc) {
     window.location.href = "index.html?page=home&error=game-not-found";
-} else {
-    $(".spinner-border").hide();
-    const game = gameDoc.data();
-    const flags = game.flags.match(/.{1,2}/g);
-
-    const flagRef = await getDocs(collection(db, "flags"));
-    var flagData = flagRef.docs.find((doc) => doc.data().id === flags[0]).data();
-
-    var index = 0;
-    var timer = 0;
-    if (index == 0) {
-        const flagElement = document.getElementById("flags");
-        const startButton = document.createElement("button");
-        startButton.classList.add("btn", "btn-primary");
-        startButton.innerHTML = "Start";
-        flagElement.appendChild(startButton);
-        startButton.addEventListener("click", function () {
-            startButton.style.display = "none";
-            intervalId = setInterval(function () {
-                timer++;
-                console.log(timer);
-            }, 1000);
-            showNextFlag();
-            for (let i = 1; i <= 4; i++) {
-                const flag = document.getElementById("flag" + i);
-                flag.style.display = "block";
-            }
-        });
-    }
-
-    const buttonIds = ["flag1", "flag2", "flag3", "flag4"];
-    buttonIds.forEach((buttonId) => {
-        document.getElementById(buttonId).addEventListener("click", showNextFlag);
-    });
-
-    var score = 0;
 }
+$(".spinner-border").hide();
+const game = gameDoc.data();
+const flags = game.flags.match(/.{1,2}/g);
+
+const flagRef = await getDocs(collection(db, "flags"));
+var flagData = flagRef.docs.find((doc) => doc.data().id === flags[0]).data();
+
+var index = 0;
+var timer = 0;
+var score = 0;
+var intervalId;
+if (index == 0) {
+    const flagElement = document.getElementById("flags");
+    const startButton = document.createElement("button");
+    startButton.classList.add("btn", "btn-primary");
+    startButton.innerHTML = "Start";
+    flagElement.appendChild(startButton);
+    startButton.addEventListener("click", function () {
+        startButton.style.display = "none";
+        intervalId = setInterval(function () {
+            timer++;
+            console.log(timer);
+        }, 1000);
+        showNextFlag();
+        for (let i = 1; i <= 4; i++) {
+            const flag = document.getElementById("flag" + i);
+            flag.style.display = "block";
+        }
+    });
+}
+
+const buttonIds = ["flag1", "flag2", "flag3", "flag4"];
+buttonIds.forEach((buttonId) => {
+    document.getElementById(buttonId).addEventListener("click", showNextFlag);
+});
+
 function showNextFlag() {
     console.log("showNextFlag");
     if (index < flags.length) {
