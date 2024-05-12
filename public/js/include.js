@@ -20,6 +20,7 @@ $(document).ready(function () {
         flags: "../pages/flags.html",
         createGame: "../pages/createGame.html",
         game: "../pages/game.html",
+        profile: "../pages/profile.html",
     };
     if (page === null) {
         window.location = "index.html?page=home";
