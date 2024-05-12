@@ -25,7 +25,7 @@ if (index == 0) {
     flagElement.appendChild(startButton);
     startButton.addEventListener("click", function () {
         startButton.style.display = "none";
-        intervalId = setInterval(function() {
+        intervalId = setInterval(function () {
             timer++;
             console.log(timer);
         }, 1000);
