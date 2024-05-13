@@ -26,7 +26,7 @@ onAuthStateChanged(auth, async (user) => {
             const username = userData.username;
             const email = userData.email;
             const details = document.getElementById("details");
-            details.innerHTML = `<p><strong>Username:</strong> ${username}</p><p><strong>Email:</strong> ${email}</p>`;
+            details.innerHTML = `<h1><strong>Username:</strong> ${username}</h1><h1><strong>Email:</strong> ${email}</h1>`;
         }
     }
 });
