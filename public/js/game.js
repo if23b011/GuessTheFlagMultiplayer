@@ -12,6 +12,7 @@ const gameDoc = gameRef.docs.find((doc) => doc.id === gameID);
 
 if (!gameDoc) {
     window.location.href = "index.html?page=home&error=game-not-found";
+    console.log("Game not found");
 }
 $(".spinner-border").hide();
 const game = gameDoc.data();
