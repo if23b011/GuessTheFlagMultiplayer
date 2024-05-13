@@ -23,8 +23,8 @@ var flagData = flagRef.docs.find((doc) => doc.data().id === flags[0]).data();
 var index = 0;
 var timer = 0;
 var score = 0;
-var intervalId;
 if (index == 0) {
+    var intervalId;
     const flagElement = document.getElementById("flags");
     const startButton = document.createElement("button");
     startButton.classList.add("btn", "btn-primary");
@@ -34,7 +34,7 @@ if (index == 0) {
         startButton.style.display = "none";
         intervalId = setInterval(function () {
             timer++;
-            console.log(timer);
+            document.getElementById("timer").innerHTML = "Time: " + formatTime(timer);
         }, 1000);
         showNextFlag();
         for (let i = 1; i <= 4; i++) {
@@ -48,6 +48,18 @@ const buttonIds = ["flag1", "flag2", "flag3", "flag4"];
 buttonIds.forEach((buttonId) => {
     document.getElementById(buttonId).addEventListener("click", showNextFlag);
 });
+
+function formatTime(time) {
+    var minutes = Math.floor(time / 60);
+    var seconds = time % 60;
+    return (
+        (minutes < 10 ? "0" : "") +
+        minutes +
+        ":" +
+        (seconds < 10 ? "0" : "") +
+        seconds
+    );
+}
 
 function showNextFlag() {
     console.log("showNextFlag");
@@ -72,6 +84,7 @@ function showNextFlag() {
             const flag = document.getElementById("flag" + i);
             flag.style.display = "none";
         }
+        clearInterval(intervalId);
     }
     const randomIndex = Math.floor(Math.random() * 4) + 1;
     console.log(randomIndex);
