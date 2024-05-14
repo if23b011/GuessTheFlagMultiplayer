@@ -27,9 +27,16 @@ var score = 0;
 if (index == 0) {
     var intervalId;
     const flagElement = document.getElementById("flags");
+    const instructionDiv = document.createElement("div");
+    instructionDiv.innerHTML = "<h1>Um das Spiel zu starten, den Button klicken!</h1>";
+    instructionDiv.style.marginBottom = "20px";
+    flagElement.appendChild(instructionDiv);
     const startButton = document.createElement("button");
-    startButton.classList.add("btn", "btn-primary");
+    startButton.classList.add("btn", "btn-dark");
     startButton.innerHTML = "Start";
+    startButton.style.marginTop = "20px";
+    startButton.style.fontSize = "20px";
+    startButton.style.padding = "10px 30px";
     flagElement.appendChild(startButton);
     startButton.addEventListener("click", function () {
         startButton.style.display = "none";
