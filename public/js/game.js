@@ -65,6 +65,8 @@ function formatTime(time) {
 function showNextFlag() {
     console.log("showNextFlag");
     if (index < flags.length) {
+        const flagCount = document.getElementById("flagCount");
+        flagCount.innerHTML = "Flag " + (index + 1) + " of " + flags.length;
         flagData = flagRef.docs
             .find((doc) => doc.data().id === flags[index])
             .data();
@@ -86,6 +88,7 @@ function showNextFlag() {
             flag.style.display = "none";
         }
         clearInterval(intervalId);
+        flagCount.innerHTML = "";
     }
     const randomIndex = Math.floor(Math.random() * 4) + 1;
     console.log(randomIndex);
