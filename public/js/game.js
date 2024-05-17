@@ -40,6 +40,7 @@ if (index == 0) {
     flagElement.appendChild(startButton);
     startButton.addEventListener("click", function () {
         startButton.style.display = "none";
+        document.getElementById("score").innerHTML = "Score: " + score;
         intervalId = setInterval(function () {
             timer++;
             document.getElementById("timer").innerHTML = "Time: " + formatTime(timer);
