@@ -40,6 +40,7 @@ if (index == 0) {
     flagElement.appendChild(startButton);
     startButton.addEventListener("click", function () {
         startButton.style.display = "none";
+        document.getElementById("score").innerHTML = "Score: " + score;
         intervalId = setInterval(function () {
             timer++;
             document.getElementById("timer").innerHTML = "Time: " + formatTime(timer);
@@ -70,7 +71,6 @@ function formatTime(time) {
 }
 
 function showNextFlag() {
-    console.log("showNextFlag");
     if (index < flags.length) {
         const flagCount = document.getElementById("flagCount");
         flagCount.innerHTML = "Flag " + (index + 1) + " of " + flags.length;
@@ -97,19 +97,36 @@ function showNextFlag() {
         clearInterval(intervalId);
         flagCount.innerHTML = "";
     }
+
     const randomIndex = Math.floor(Math.random() * 4) + 1;
     console.log(randomIndex);
     const correctButton = document.getElementById("flag" + randomIndex);
     correctButton.innerHTML = flagData.name;
     const wrongButtons = buttonIds.filter((id) => id !== correctButton.id);
+
+    buttonIds.forEach((buttonId) => {
+        const button = document.getElementById(buttonId);
+        const newButton = button.cloneNode(true);
+        button.parentNode.replaceChild(newButton, button);
+    });
+
+    document.getElementById(correctButton.id).addEventListener("click", function () {
+        score++;
+        document.getElementById("score").innerHTML = "Score: " + score;
+        showNextFlag();
+    });
+
+    wrongButtons.forEach((id) => {
+        document.getElementById(id).addEventListener("click", function () {
+            showNextFlag();
+        });
+    });
+
     wrongButtons.forEach((id) => {
         const wrongFlag =
             flagRef.docs[Math.floor(Math.random() * flagRef.size)].data();
         document.getElementById(id).innerHTML = wrongFlag.name;
     });
-    correctButton.addEventListener("click", function () {
-        score++;
-        document.getElementById("score").innerHTML = "Score: " + score;
-    });
+
     index++;
 }
