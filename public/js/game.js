@@ -39,6 +39,8 @@ if (index == 0) {
     startButton.style.padding = "10px 30px";
     flagElement.appendChild(startButton);
     startButton.addEventListener("click", function () {
+        //Timer wird sobald er fertig geladen ist überschrieben
+        document.getElementById("timer").innerHTML = "Time: 00:00";
         startButton.style.display = "none";
         document.getElementById("score").innerHTML = "Score: " + score;
         intervalId = setInterval(function () {
@@ -123,8 +125,10 @@ function showNextFlag() {
     });
 
     wrongButtons.forEach((id) => {
-        const wrongFlag =
-            flagRef.docs[Math.floor(Math.random() * flagRef.size)].data();
+        let wrongFlag;
+        do {
+            wrongFlag = flagRef.docs[Math.floor(Math.random() * flagRef.size)].data();
+        } while (wrongFlag.name === flagData.name || document.getElementById(id).innerHTML === wrongFlag.name);
         document.getElementById(id).innerHTML = wrongFlag.name;
     });
 
