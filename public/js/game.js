@@ -84,7 +84,7 @@ function showNextFlag() {
         const img = document.createElement("img");
         img.src = "../img/flags/" + flagData.name + ".png";
         img.alt = flagData.name;
-        img.style.width = "500px";
+        img.style.height = "200px";
         flagElement.appendChild(img);
     } else if (index == flags.length) {
         const flagElement = document.getElementById("flags");
