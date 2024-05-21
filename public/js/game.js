@@ -128,7 +128,7 @@ function showNextFlag() {
         let wrongFlag;
         do {
             wrongFlag = flagRef.docs[Math.floor(Math.random() * flagRef.size)].data();
-        } while (wrongFlag.name === flagData.name || document.getElementById(id).innerHTML === wrongFlag.name);
+        } while (wrongFlag.name == undefined || wrongFlag.name === flagData.name || document.getElementById(id).innerHTML === wrongFlag.name);
         document.getElementById(id).innerHTML = wrongFlag.name;
     });
 
