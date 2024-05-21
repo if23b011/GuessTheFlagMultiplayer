@@ -40,12 +40,12 @@ if (index == 0) {
     flagElement.appendChild(startButton);
     startButton.addEventListener("click", function () {
         //Timer wird sobald er fertig geladen ist überschrieben
-        document.getElementById("timer").innerHTML = "Time: 00:00";
+        document.getElementById("timer").innerHTML = "Zeit: 00:00";
         startButton.style.display = "none";
         document.getElementById("score").innerHTML = "Score: " + score;
         intervalId = setInterval(function () {
             timer++;
-            document.getElementById("timer").innerHTML = "Time: " + formatTime(timer);
+            document.getElementById("timer").innerHTML = "Zeit: " + formatTime(timer);
         }, 1000);
         showNextFlag();
         for (let i = 1; i <= 4; i++) {
@@ -75,7 +75,7 @@ function formatTime(time) {
 function showNextFlag() {
     if (index < flags.length) {
         const flagCount = document.getElementById("flagCount");
-        flagCount.innerHTML = "Flag " + (index + 1) + " of " + flags.length;
+        flagCount.innerHTML = "Flagge " + (index + 1) + " von " + flags.length;
         flagData = flagRef.docs
             .find((doc) => doc.data().id === flags[index])
             .data();
