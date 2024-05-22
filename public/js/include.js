@@ -21,6 +21,7 @@ $(document).ready(function () {
         createGame: "../pages/createGame.html",
         game: "../pages/game.html",
         profile: "../pages/profile.html",
+        highscores: "../pages/highscores.html",
     };
     if (page === null) {
         window.location = "index.html?page=home";
