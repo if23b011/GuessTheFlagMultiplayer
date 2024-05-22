@@ -40,12 +40,12 @@ if (index == 0) {
     flagElement.appendChild(startButton);
     startButton.addEventListener("click", function () {
         //Timer wird sobald er fertig geladen ist überschrieben
-        document.getElementById("timer").innerHTML = "Time: 00:00";
+        document.getElementById("timer").innerHTML = "Zeit: 00:00";
         startButton.style.display = "none";
         document.getElementById("score").innerHTML = "Score: " + score;
         intervalId = setInterval(function () {
             timer++;
-            document.getElementById("timer").innerHTML = "Time: " + formatTime(timer);
+            document.getElementById("timer").innerHTML = "Zeit: " + formatTime(timer);
         }, 1000);
         showNextFlag();
         for (let i = 1; i <= 4; i++) {
@@ -75,7 +75,7 @@ function formatTime(time) {
 function showNextFlag() {
     if (index < flags.length) {
         const flagCount = document.getElementById("flagCount");
-        flagCount.innerHTML = "Flag " + (index + 1) + " of " + flags.length;
+        flagCount.innerHTML = "Flagge " + (index + 1) + " von " + flags.length;
         flagData = flagRef.docs
             .find((doc) => doc.data().id === flags[index])
             .data();
@@ -103,7 +103,7 @@ function showNextFlag() {
     const randomIndex = Math.floor(Math.random() * 4) + 1;
     console.log(randomIndex);
     const correctButton = document.getElementById("flag" + randomIndex);
-    correctButton.innerHTML = flagData.name;
+    correctButton.innerHTML = flagData.name.replace(/([A-Z])/g, ' $1').replace(/(Von|Und|Die)/g, (match) => match.toLowerCase());
     const wrongButtons = buttonIds.filter((id) => id !== correctButton.id);
 
     buttonIds.forEach((buttonId) => {
@@ -129,7 +129,7 @@ function showNextFlag() {
         do {
             wrongFlag = flagRef.docs[Math.floor(Math.random() * flagRef.size)].data();
         } while (wrongFlag.name == undefined || wrongFlag.name === flagData.name || document.getElementById(id).innerHTML === wrongFlag.name);
-        document.getElementById(id).innerHTML = wrongFlag.name;
+        document.getElementById(id).innerHTML = wrongFlag.name.replace(/([A-Z])/g, ' $1').replace(/(Von|Und|Die)/g, (match) => match.toLowerCase());
     });
 
     index++;
