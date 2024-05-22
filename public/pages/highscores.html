@@ -1,4 +1,4 @@
-<div class="row container ">
+<div class="row container">
     <div class="col-md-12" id="col0">
         <h1>Highscores</h1>
     </div>
@@ -14,5 +14,12 @@
     <div class="col-md-3" id="col4" style="display: none;">
         <h1>194 Flaggen</h1>
     </div>
-</div>
-<script src="../js/highscores.js" type="module"></script>
+    <form action="index.html" method="GET">
+        <input type="hidden" name="page" value="highscores" />
+        <input type="text" class="form-control mt-3" placeholder="Game ID eingeben" id="gameId" name="gameID" />
+        <button type="submit" class="btn btn-primary mt-3 d-flex justify-content-center mx-auto">
+            Highscores anzeigen
+        </button>
+    </form>
+    <script src="../js/highscores.js" type="module">
+    </script>
