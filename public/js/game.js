@@ -103,7 +103,7 @@ function showNextFlag() {
     const randomIndex = Math.floor(Math.random() * 4) + 1;
     console.log(randomIndex);
     const correctButton = document.getElementById("flag" + randomIndex);
-    correctButton.innerHTML = flagData.name;
+    correctButton.innerHTML = flagData.name.replace(/([A-Z])/g, ' $1').replace(/(Von|Und|Die)/g, (match) => match.toLowerCase());
     const wrongButtons = buttonIds.filter((id) => id !== correctButton.id);
 
     buttonIds.forEach((buttonId) => {
@@ -129,7 +129,7 @@ function showNextFlag() {
         do {
             wrongFlag = flagRef.docs[Math.floor(Math.random() * flagRef.size)].data();
         } while (wrongFlag.name == undefined || wrongFlag.name === flagData.name || document.getElementById(id).innerHTML === wrongFlag.name);
-        document.getElementById(id).innerHTML = wrongFlag.name;
+        document.getElementById(id).innerHTML = wrongFlag.name.replace(/([A-Z])/g, ' $1').replace(/(Von|Und|Die)/g, (match) => match.toLowerCase());
     });
 
     index++;
