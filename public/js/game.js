@@ -35,6 +35,14 @@ if (index == 0) {
     instructionDiv.innerHTML = "<h1>Um das Spiel zu starten, den Button klicken!</h1>";
     instructionDiv.style.marginBottom = "20px";
     flagElement.appendChild(instructionDiv);
+    const auth = getAuth(app);
+    onAuthStateChanged(auth, async (user) => {
+        if (!user) {
+            const highscoreNotSaved = document.createElement("div");
+            highscoreNotSaved.innerHTML = "<h1>Um deinen Highscore zu speichern, bitte einloggen!</h1>";
+            flagElement.appendChild(highscoreNotSaved);
+        }
+    });
     const startButton = document.createElement("button");
     startButton.classList.add("btn", "btn-dark");
     startButton.innerHTML = "Start";
@@ -102,6 +110,16 @@ function showNextFlag() {
         }
         clearInterval(intervalId);
         flagCount.innerHTML = "";
+        const highscoreButton = document.createElement("button");
+        highscoreButton.classList.add("btn", "btn-dark");
+        highscoreButton.innerHTML = "Highscores für dieses Spiel";
+        highscoreButton.style.marginTop = "20px";
+        highscoreButton.style.fontSize = "20px";
+        highscoreButton.style.padding = "10px 30px";
+        flagElement.appendChild(highscoreButton);
+        highscoreButton.addEventListener("click", function () {
+            window.location.href = "index.html?page=highscores&gameID=" + gameID;
+        });
         const auth = getAuth();
         const firestore = getFirestore();
         onAuthStateChanged(auth, async (user) => {
