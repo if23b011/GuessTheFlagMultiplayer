@@ -3,7 +3,11 @@ import {
     getFirestore,
     collection,
     getDocs,
+    addDoc,
+    query,
+    where,
 } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js";
+import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js";
 
 const gameID = new URLSearchParams(window.location.search).get("gameID");
 const db = getFirestore(app);
@@ -98,6 +102,22 @@ function showNextFlag() {
         }
         clearInterval(intervalId);
         flagCount.innerHTML = "";
+        const auth = getAuth();
+        const firestore = getFirestore();
+        onAuthStateChanged(auth, async (user) => {
+            if (user) {
+                const q = query(
+                    collection(firestore, "users"),
+                    where("email", "==", user.email)
+                );
+                const querySnapshot = await getDocs(q);
+                querySnapshot.forEach((doc) => {
+                    const userData = doc.data();
+                    const username = userData.username;
+                    saveHighscore(flags.length, gameID, score, timer, username);
+                });
+            }
+        });
     }
 
     const randomIndex = Math.floor(Math.random() * 4) + 1;
@@ -133,4 +153,17 @@ function showNextFlag() {
     });
 
     index++;
+}
+
+function saveHighscore(flagCount, gameID, score, timer, username) {
+    const highscore = {
+        flagCount,
+        gameID,
+        score,
+        timer,
+        username,
+    };
+    const highscoresRef = collection(db, "highscores");
+    addDoc(highscoresRef, highscore);
+    console.log("Highscore saved");
 }
