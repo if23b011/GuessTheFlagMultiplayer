@@ -17,111 +17,64 @@ const highscoresRef = collection(db, "highscores");
 
 const gameID = new URLSearchParams(window.location.search).get("gameID");
 if (!gameID) {
-    const q10 = await getDocs(query(highscoresRef, where("flagCount", "==", 10), orderBy("score", "desc"), orderBy("timer"), limit(10)));
-    const q50 = await getDocs(query(highscoresRef, where("flagCount", "==", 50), orderBy("score", "desc"), orderBy("timer"), limit(10)));
-    const q100 = await getDocs(query(highscoresRef, where("flagCount", "==", 100), orderBy("score", "desc"), orderBy("timer"), limit(10)));
-    const q194 = await getDocs(query(highscoresRef, where("flagCount", "==", 194), orderBy("score", "desc"), orderBy("timer"), limit(10)));
+    const queries = [
+        { flagCount: 10, column: "col1" },
+        { flagCount: 50, column: "col2" },
+        { flagCount: 100, column: "col3" },
+        { flagCount: 194, column: "col4" },
+    ];
 
-    q10.forEach((doc) => {
-        const data = doc.data();
-        const column1 = document.getElementById("col1");
-        column1.style.display = "block";
-        const username = data.username;
-        const score = data.score;
-        const timer = data.timer;
-        const row = document.createElement("div");
-        row.classList.add("row");
-        const col1 = document.createElement("div");
-        col1.classList.add("col");
-        col1.innerHTML = "Username: " + username;
-        row.appendChild(col1);
-        column1.appendChild(row);
-        const col2 = document.createElement("div");
-        col2.classList.add("col");
-        col2.innerHTML = "Score: " + score;
-        row.appendChild(col2);
-        column1.appendChild(row);
-        const col3 = document.createElement("div");
-        col3.classList.add("col");
-        col3.innerHTML = "Zeit: " + formatTime(timer);
-        row.appendChild(col3);
-        column1.appendChild(row);
-    });
-    q50.forEach((doc) => {
-        const data = doc.data();
-        const column2 = document.getElementById("col2");
-        column2.style.display = "block";
-        const username = data.username;
-        const score = data.score;
-        const timer = data.timer;
-        const row = document.createElement("div");
-        row.classList.add("row");
-        const col1 = document.createElement("div");
-        col1.classList.add("col");
-        col1.innerHTML = "Username: " + username;
-        row.appendChild(col1);
-        column2.appendChild(row);
-        const col2 = document.createElement("div");
-        col2.classList.add("col");
-        col2.innerHTML = "Score: " + score;
-        row.appendChild(col2);
-        column2.appendChild(row);
-        const col3 = document.createElement("div");
-        col3.classList.add("col");
-        col3.innerHTML = "Zeit: " + formatTime(timer);
-        row.appendChild(col3);
-        column2.appendChild(row);
-    });
-    q100.forEach((doc) => {
-        const data = doc.data();
-        const column3 = document.getElementById("col3");
-        column3.style.display = "block";
-        const username = data.username;
-        const score = data.score;
-        const timer = data.timer;
-        const row = document.createElement("div");
-        row.classList.add("row");
-        const col1 = document.createElement("div");
-        col1.classList.add("col");
-        col1.innerHTML = "Username: " + username;
-        row.appendChild(col1);
-        column3.appendChild(row);
-        const col2 = document.createElement("div");
-        col2.classList.add("col");
-        col2.innerHTML = "Score: " + score;
-        row.appendChild(col2);
-        column3.appendChild(row);
-        const col3 = document.createElement("div");
-        col3.classList.add("col");
-        col3.innerHTML = "Zeit: " + formatTime(timer);
-        row.appendChild(col3);
-        column3.appendChild(row);
-    });
-    q194.forEach((doc) => {
-        const data = doc.data();
-        const column4 = document.getElementById("col4");
-        column4.style.display = "block";
-        const username = data.username;
-        const score = data.score;
-        const timer = data.timer;
-        const row = document.createElement("div");
-        row.classList.add("row");
-        const col1 = document.createElement("div");
-        col1.classList.add("col");
-        col1.innerHTML = "Username: " + username;
-        row.appendChild(col1);
-        column4.appendChild(row);
-        const col2 = document.createElement("div");
-        col2.classList.add("col");
-        col2.innerHTML = "Score: " + score;
-        row.appendChild(col2);
-        column4.appendChild(row);
-        const col3 = document.createElement("div");
-        col3.classList.add("col");
-        col3.innerHTML = "Zeit: " + formatTime(timer);
-        row.appendChild(col3);
-        column4.appendChild(row);
-    });
+    for (const queryObj of queries) {
+        const { flagCount, column } = queryObj;
+        const q = await getDocs(
+            query(
+                highscoresRef,
+                where("flagCount", "==", flagCount),
+                orderBy("score", "desc"),
+                orderBy("timer"),
+                limit(10)
+            )
+        );
+
+        q.forEach((doc) => {
+            const data = doc.data();
+            const columnElement = document.getElementById(column);
+            columnElement.style.display = "block";
+            const username = data.username;
+            const score = data.score;
+            const timer = data.timer;
+            const gameID = data.gameID;
+            const row = document.createElement("div");
+            row.classList.add("row");
+            const col1 = document.createElement("div");
+            col1.classList.add("col");
+            col1.innerHTML = "Username: " + username;
+            row.appendChild(col1);
+            columnElement.appendChild(row);
+            const col2 = document.createElement("div");
+            col2.classList.add("col");
+            col2.innerHTML = "Score: " + score;
+            row.appendChild(col2);
+            columnElement.appendChild(row);
+            const col3 = document.createElement("div");
+            col3.classList.add("col");
+            col3.innerHTML = "Zeit: " + formatTime(timer);
+            row.appendChild(col3);
+            columnElement.appendChild(row);
+            const col4 = document.createElement("div");
+            col4.classList.add("col");
+            col4.innerHTML = "GameID: " + gameID.substring(0, 7);
+            row.appendChild(col4);
+            columnElement.appendChild(row);
+            const gameButton = document.createElement("button");
+            gameButton.classList.add("btn", "btn-dark");
+            gameButton.innerHTML = "Zum Spiel";
+            columnElement.appendChild(gameButton);
+            gameButton.addEventListener("click", function () {
+                window.location.href = "index.html?page=game&gameID=" + gameID;
+            });
+        });
+    }
 }
 else {
     console.log("GameID: " + gameID);
