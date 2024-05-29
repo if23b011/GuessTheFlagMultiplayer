@@ -12,7 +12,11 @@ import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/
 const gameID = new URLSearchParams(window.location.search).get("gameID");
 const db = getFirestore(app);
 const gameRef = await getDocs(collection(db, "games"));
-const gameDoc = gameRef.docs.find((doc) => doc.id === gameID);
+const gameDoc = gameRef.docs.find((doc) => doc.id.startsWith(gameID));
+if (gameID !== gameDoc.id) {
+    window.location.href = "index.html?page=game&gameID=" + gameDoc.id;
+}
+
 
 if (!gameDoc) {
     window.location.href = "index.html?page=home&error=game-not-found";
@@ -139,7 +143,6 @@ function showNextFlag() {
     }
 
     const randomIndex = Math.floor(Math.random() * 4) + 1;
-    console.log(randomIndex);
     const correctButton = document.getElementById("flag" + randomIndex);
     correctButton.innerHTML = flagData.name.replace(/([A-Z])/g, ' $1').replace(/(Von|Und|Die)/g, (match) => match.toLowerCase());
     const wrongButtons = buttonIds.filter((id) => id !== correctButton.id);
