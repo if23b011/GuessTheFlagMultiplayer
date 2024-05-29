@@ -6,7 +6,7 @@ body {
     background-attachment: fixed;
 }
 
-h1 {
+h1, h2 {
     text-align: center;
 }
 
@@ -15,11 +15,13 @@ h1 {
     justify-content: center;
     align-items: center;
     height: 100vh;
+    margin-top: -100px;
+    margin-bottom: -60px;
 }
 
 .sign-out-btn {
     padding: 8px 15px;
-    background-color: #f44336; /*rot*/
+    background-color: #f44336;
     color: white;
     border: none;
     border-radius: 4px;
