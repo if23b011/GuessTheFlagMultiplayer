@@ -55,7 +55,7 @@ if (index == 0) {
     startButton.style.padding = "10px 30px";
     flagElement.appendChild(startButton);
     startButton.addEventListener("click", function () {
-        //Timer wird sobald er fertig geladen ist überschrieben
+        document.getElementById("choice").innerHTML = "Wähle die richtige Flagge!";
         document.getElementById("timer").innerHTML = "Zeit: 00:00";
         startButton.style.display = "none";
         document.getElementById("score").innerHTML = "Score: " + score;
@@ -156,11 +156,15 @@ function showNextFlag() {
     document.getElementById(correctButton.id).addEventListener("click", function () {
         score++;
         document.getElementById("score").innerHTML = "Score: " + score;
+        document.getElementById("choice").innerHTML = "Richtig!";
+        document.getElementById("choice").style.color = "green";
         showNextFlag();
     });
 
     wrongButtons.forEach((id) => {
         document.getElementById(id).addEventListener("click", function () {
+            document.getElementById("choice").innerHTML = "Falsch!";
+            document.getElementById("choice").style.color = "red";
             showNextFlag();
         });
     });
