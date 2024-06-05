@@ -41,3 +41,8 @@ h1, h2 {
 .highscore-border {
     border: 1px solid #21828f;
 }
+
+.home-content {
+    display: flex;
+    justify-content: center;
+}
