@@ -15,7 +15,8 @@ h1, h2 {
 #content {
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: center; 
+    margin-bottom: 60px;
 }
 
 .sign-out-btn {
