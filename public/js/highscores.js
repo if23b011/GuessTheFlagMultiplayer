@@ -67,7 +67,7 @@ if (!gameID) {
             row.appendChild(col4);
             columnElement.appendChild(row);
             const gameButton = document.createElement("button");
-            gameButton.classList.add("btn", "btn-outline-info", "highscore-info", "mb-3", "w-50");
+            gameButton.classList.add("btn", "btn-info", "highscore-info", "mb-3", "w-50");
             gameButton.innerHTML = "Zum Spiel";
             const buttonWrapper = document.createElement("div");
             buttonWrapper.classList.add("d-flex", "justify-content-center");
