@@ -85,24 +85,40 @@ else {
     q.forEach((doc) => {
         const data = doc.data();
         const column0 = document.getElementById("col0");
+        const header = document.createElement("div");
+        header.classList.add("col-md-12", "highscores-border");
+        header.id = "colheader";
+        header.style.display = "block";
+        const labelsRow = document.createElement("div");
+        labelsRow.classList.add("row", "text-center", "border", "small-text");
+        const labels = ["Username", "Score", "Time"];
+        labels.forEach(label => {
+            const div = document.createElement("div");
+            div.classList.add("col-md-4");
+            div.innerHTML = label;
+            labelsRow.appendChild(div);
+        });
+        header.appendChild(labelsRow);
+        column0.appendChild(header);
+
+        const row = document.createElement("div");
+        row.classList.add("row", "border");
         const username = data.username;
         const score = data.score;
         const timer = data.timer;
-        const row = document.createElement("div");
-        row.classList.add("row");
         const col1 = document.createElement("div");
-        col1.classList.add("col");
-        col1.innerHTML = "Username: " + username;
+        col1.classList.add("col", "gameid-highscore");
+        col1.innerHTML = username;
         row.appendChild(col1);
         column0.appendChild(row);
         const col2 = document.createElement("div");
-        col2.classList.add("col");
-        col2.innerHTML = "Score: " + score;
+        col2.classList.add("col", "gameid-highscore");
+        col2.innerHTML = score;
         row.appendChild(col2);
         column0.appendChild(row);
         const col3 = document.createElement("div");
-        col3.classList.add("col");
-        col3.innerHTML = "Zeit: " + formatTime(timer);
+        col3.classList.add("col", "gameid-highscore");
+        col3.innerHTML = formatTime(timer);
         row.appendChild(col3);
         column0.appendChild(row);
     });
