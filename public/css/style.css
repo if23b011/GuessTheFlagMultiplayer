@@ -38,6 +38,10 @@ h1, h2 {
     font-size: 0.9em;
 }
 
+.gameid-highscore {
+    text-align: center;
+}
+
 .highscore-border {
     border: 1px solid #21828f;
 }
