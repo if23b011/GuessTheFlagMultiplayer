@@ -48,7 +48,7 @@ if (index == 0) {
         }
     });
     const startButton = document.createElement("button");
-    startButton.classList.add("btn", "btn-dark");
+    startButton.classList.add("btn", "btn-info");
     startButton.innerHTML = "Start";
     startButton.style.marginTop = "20px";
     startButton.style.fontSize = "20px";
@@ -101,10 +101,12 @@ function showNextFlag() {
         img.src = "../img/flags/" + flagData.name + ".png";
         img.alt = flagData.name;
         img.style.height = "200px";
+        img.style.border = "2px solid black";
         flagElement.appendChild(img);
     } else if (index == flags.length) {
         const flagElement = document.getElementById("flags");
         flagElement.innerHTML = "";
+        document.getElementById("choice").innerHTML = "";
         const h1 = document.createElement("h1");
         h1.innerHTML = "Game Over!";
         flagElement.appendChild(h1);
@@ -115,7 +117,7 @@ function showNextFlag() {
         clearInterval(intervalId);
         flagCount.innerHTML = "";
         const highscoreButton = document.createElement("button");
-        highscoreButton.classList.add("btn", "btn-dark");
+        highscoreButton.classList.add("btn", "btn-info");
         highscoreButton.innerHTML = "Highscores für dieses Spiel";
         highscoreButton.style.marginTop = "20px";
         highscoreButton.style.fontSize = "20px";

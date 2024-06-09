@@ -1,25 +1,54 @@
-<div class="row container">
-    <div class="col-md-12" id="col0">
-        <h1>Highscores</h1>
+<div class="d-flex flex-column">
+    <div class="container alert alert-light container-xl flex-grow-1" data-bs-theme="light">
+        <div class="row">
+            <div class="col-md-12" id="col0">
+                <h1>Highscores</h1>
+            </div>
+            <div class="col-md-3 highscore-border" id="col1" style="display: none;">
+                <h2>10 Flaggen</h2>
+                <div class="row text-center border small-text">
+                    <div class="col-md-3">Username</div>
+                    <div class="col-md-3">Score</div>
+                    <div class="col-md-3">Time</div>
+                    <div class="col-md-3">GameID</div>
+                </div>
+            </div>
+            <div class="col-md-3 highscore-border" id="col2" style="display: none;">
+                <h2>50 Flaggen</h2>
+                <div class="row text-center border small-text">
+                    <div class="col-md-3">Username</div>
+                    <div class="col-md-3">Score</div>
+                    <div class="col-md-3">Time</div>
+                    <div class="col-md-3">GameID</div>
+                </div>
+            </div>
+            <div class="col-md-3 highscore-border" id="col3" style="display: none;">
+                <h2>100 Flaggen</h2>
+                <div class="row text-center border small-text">
+                    <div class="col-md-3">Username</div>
+                    <div class="col-md-3">Score</div>
+                    <div class="col-md-3">Time</div>
+                    <div class="col-md-3">GameID</div>
+                </div>
+            </div>
+            <div class="col-md-3 highscore-border" id="col4" style="display: none;">
+                <h2>194 Flaggen</h2>
+                <div class="row text-center border small-text">
+                    <div class="col-md-3">Username</div>
+                    <div class="col-md-3">Score</div>
+                    <div class="col-md-3">Time</div>
+                    <div class="col-md-3">GameID</div>
+                </div>
+            </div>
+            <form action="index.html" method="GET">
+                <input type="hidden" name="page" value="highscores" />
+                <input type="text" class="form-control mt-3" placeholder="Game ID eingeben" id="gameId" name="gameID" />
+                <button type="submit" class="btn btn-info mt-3 d-flex justify-content-center mx-auto">
+                    GameID-Highscores anzeigen
+                </button>
+            </form>
+            <script src="../js/highscores.js" type="module">
+            </script>
+        </div>
     </div>
-    <div class="col-md-3" id="col1" style="display: none;">
-        <h1>10 Flaggen</h1>
-    </div>
-    <div class="col-md-3" id="col2" style="display: none;">
-        <h1>50 Flaggen</h1>
-    </div>
-    <div class="col-md-3" id="col3" style="display: none;">
-        <h1>100 Flaggen</h1>
-    </div>
-    <div class="col-md-3" id="col4" style="display: none;">
-        <h1>194 Flaggen</h1>
-    </div>
-    <form action="index.html" method="GET">
-        <input type="hidden" name="page" value="highscores" />
-        <input type="text" class="form-control mt-3" placeholder="Game ID eingeben" id="gameId" name="gameID" />
-        <button type="submit" class="btn btn-primary mt-3 d-flex justify-content-center mx-auto">
-            Highscores anzeigen
-        </button>
-    </form>
-    <script src="../js/highscores.js" type="module">
-    </script>
+</div>
