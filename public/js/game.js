@@ -20,7 +20,6 @@ if (gameID !== gameDoc.id) {
 
 if (!gameDoc) {
     window.location.href = "index.html?page=home&error=game-not-found";
-    console.log("Game not found");
 }
 $(".spinner-border").hide();
 const game = gameDoc.data();
@@ -30,8 +29,8 @@ const flagRef = await getDocs(collection(db, "flags"));
 var flagData = flagRef.docs.find((doc) => doc.data().id === flags[0]).data();
 
 var index = 0;
-var timer = 0;
 var score = 0;
+var elapsedTime = 0;
 if (index == 0) {
     var intervalId;
     const flagElement = document.getElementById("flags");
@@ -59,10 +58,11 @@ if (index == 0) {
         document.getElementById("timer").innerHTML = "Zeit: 00:00";
         startButton.style.display = "none";
         document.getElementById("score").innerHTML = "Score: " + score;
+        var startTime = Date.now();
         intervalId = setInterval(function () {
-            timer++;
-            document.getElementById("timer").innerHTML = "Zeit: " + formatTime(timer);
-        }, 1000);
+            elapsedTime = Date.now() - startTime;
+            document.getElementById("timer").innerHTML = "Zeit: " + formatTime(elapsedTime);
+        }, 1);
         showNextFlag();
         for (let i = 1; i <= 4; i++) {
             const flag = document.getElementById("flag" + i);
@@ -76,16 +76,12 @@ buttonIds.forEach((buttonId) => {
     document.getElementById(buttonId).addEventListener("click", showNextFlag);
 });
 
+
+
 function formatTime(time) {
-    var minutes = Math.floor(time / 60);
-    var seconds = time % 60;
-    return (
-        (minutes < 10 ? "0" : "") +
-        minutes +
-        ":" +
-        (seconds < 10 ? "0" : "") +
-        seconds
-    );
+    var minutes = Math.floor(time / 60000);
+    var seconds = ((time % 60000) / 1000).toFixed(3);
+    return (minutes < 10 ? "0" : "") + minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
 }
 
 function showNextFlag() {
@@ -104,6 +100,7 @@ function showNextFlag() {
         img.style.border = "2px solid black";
         flagElement.appendChild(img);
     } else if (index == flags.length) {
+        console.log(elapsedTime);
         const flagElement = document.getElementById("flags");
         flagElement.innerHTML = "";
         document.getElementById("choice").innerHTML = "";

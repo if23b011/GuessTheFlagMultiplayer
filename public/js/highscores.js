@@ -10,12 +10,10 @@ import {
     limit,
 } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js";
 
-console.log("Highscores");
-
-const db = getFirestore(app);
-const highscoresRef = collection(db, "highscores");
 
 const gameID = new URLSearchParams(window.location.search).get("gameID");
+const db = getFirestore(app);
+const highscores = collection(db, "highscores");
 if (!gameID) {
     const queries = [
         { flagCount: 10, column: "col1" },
@@ -28,7 +26,7 @@ if (!gameID) {
         const { flagCount, column } = queryObj;
         const q = await getDocs(
             query(
-                highscoresRef,
+                highscores,
                 where("flagCount", "==", flagCount),
                 orderBy("score", "desc"),
                 orderBy("timer"),
@@ -80,9 +78,26 @@ if (!gameID) {
     }
 }
 else {
-    console.log("GameID: " + gameID);
-    const q = await getDocs(query(highscoresRef, where("gameID", "==", gameID), orderBy("score", "desc"), orderBy("timer"), limit(10)));
-    q.forEach((doc) => {
+    const highscoreRef = await getDocs(collection(db, "highscores"));
+    const highscoreDoc = highscoreRef.docs.find((doc) => doc.data().gameID.startsWith(gameID));
+    if (gameID !== highscoreDoc.data().gameID) {
+        window.location.href = "index.html?page=highscores&gameID=" + highscoreDoc.data().gameID;
+    }
+    if (!highscoreDoc) {
+        window.location.href = "index.html?page=home&error=game-not-found";
+    }
+
+    const highscoreRefGameID = await getDocs(
+        query(
+            highscores,
+            where("gameID", "==", gameID),
+            orderBy("score", "desc"),
+            orderBy("timer"),
+            limit(10)
+        )
+    );
+
+    highscoreRefGameID.forEach((doc) => {
         const data = doc.data();
         const column0 = document.getElementById("col0");
         const header = document.createElement("div");
@@ -92,7 +107,7 @@ else {
         const labelsRow = document.createElement("div");
         labelsRow.classList.add("row", "text-center", "border", "small-text");
         const labels = ["Username", "Score", "Time"];
-        labels.forEach(label => {
+        labels.forEach((label) => {
             const div = document.createElement("div");
             div.classList.add("col-md-4");
             div.innerHTML = label;
@@ -122,16 +137,10 @@ else {
         row.appendChild(col3);
         column0.appendChild(row);
     });
-}
 
+}
 function formatTime(time) {
-    var minutes = Math.floor(time / 60);
-    var seconds = time % 60;
-    return (
-        (minutes < 10 ? "0" : "") +
-        minutes +
-        ":" +
-        (seconds < 10 ? "0" : "") +
-        seconds
-    );
+    var minutes = Math.floor(time / 60000);
+    var seconds = ((time % 60000) / 1000).toFixed(3);
+    return (minutes < 10 ? "0" : "") + minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
 }
