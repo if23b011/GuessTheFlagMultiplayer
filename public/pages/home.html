@@ -1,0 +1,27 @@
+<div class="d-flex justify-content-center align-items-center home-content">
+    <div class="card bg-light text-center mt-5" style="width: 18rem;">
+        <div class="card-body">
+            <img src="img/logo2.png" class="card-img-top mb-3" alt="multiplayer" style="width: 50%;" />
+            <div class="d-flex flex-column align-items-center justify-content-center">
+                <h1 class="card-title" style="color: rgb(0, 0, 0); font-size: 1.5rem;">Guess The Flags</h1>
+                <a href="index.html?page=createGame" id="createGame" class="btn btn-info my-3">
+                    Spiel erstellen
+                </a>
+                <h2 style="color: rgb(0, 0, 0); font-size: 1.25rem;">oder</h2>
+                <form action="index.html" method="GET">
+                    <input type="hidden" name="page" value="game" />
+                    <input type="text" class="form-control mt-3" placeholder="Game ID eingeben" id="gameId"
+                        name="gameID" />
+                    <button type="submit" class="btn btn-info mt-3">
+                        Spiel beitreten
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Toast-Div-->
+<div class="toast-container position-fixed bottom-0 end-0 p-3" id="toast-placement"></div>
+
+<script src="../js/home.js" type="module"></script>

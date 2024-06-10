@@ -1,0 +1,60 @@
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-6">
+            <form id="signup-form" style="
+                    background-color: white;
+                    padding: 10px;
+                    border: 2px solid black;
+                    border-radius: 10px;
+                ">
+                <h1 class="text-center">Sign Up</h1>
+                <p class="text-center">
+                    Sie haben bereits ein Konto?
+                    <a href="index.html?page=signIn">Sign In</a>
+                </p>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <input type="text" name="username" id="username" placeholder="Username" class="form-control" />
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <input type="text" name="email" placeholder="Email" id="email" class="form-control" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <input type="password" name="password" placeholder="Passwort" id="password"
+                            class="form-control" />
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <input type="password" name="passwordConfirm" placeholder="Passwort wiederholen"
+                            id="passwordConfirm" class="form-control" />
+                    </div>
+                </div>
+                <div class="d-flex justify-content-center mb-3">
+                    <button type="submit" class="btn btn-primary w-50">
+                        Sign Up
+                    </button>
+                </div>
+                <p id="lengthError" style="color: red">
+                    Das Passwort muss mindestens 8 Zeichen lang sein
+                </p>
+                <p id="upperCaseError" style="color: red">
+                    Ein Großbuchstabe muss enthalten sein
+                </p>
+                <p id="lowerCaseError" style="color: red">
+                    Ein Kleinbuchstabe muss enthalten sein
+                </p>
+                <p id="numberError" style="color: red">
+                    Eine Zahl muss enthalten sein
+                </p>
+                <p id="specialCharsError" style="color: red">
+                    Ein Sonderzeichen muss enthalten sein
+                </p>
+                <p id="passwordConfirmError" style="color: red">
+                    Die Passwörter müssen übereinstimmen
+                </p>
+            </form>
+        </div>
+    </div>
+</div>
+<script src="../js/signUp.js" type="module"></script>

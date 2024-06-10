@@ -1,0 +1,42 @@
+<nav class="navbar navbar-expand-xl border-body sticky-top">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="index.html?page=home">
+            <img src="./img/logo.png" alt="Logo" width="50" class="rounded-circle" />
+        </a>
+
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-link" href="index.html?page=profile">
+                    <h2 id="profile"></h2>
+                </a>
+            </div>
+            <div class="navbar-nav">
+                <a class="nav-link" href="index.html?page=signUp">
+                    <h2 id="signUp">Sign Up</h2>
+                </a>
+            </div>
+            <div class="navbar-nav">
+                <a class="nav-link" href="index.html?page=highscores">
+                    <h2 id="highscores">Highscores</h2>
+                </a>
+            </div>
+            <div class="navbar-nav ms-auto">
+                <button id="signOutButton" class="btn btn-danger ms-3">
+                    Sign Out
+                </button>
+            </div>
+        </div>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
+</nav>
+<script src="../js/navbar.js" type="module"></script>
+<script src="../js/signOut.js" type="module"></script>
+
+<style>
+.navbar {
+    background-color: #11bcff !important;
+}
+</style>
