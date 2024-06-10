@@ -135,7 +135,7 @@ function showNextFlag() {
                 querySnapshot.forEach((doc) => {
                     const userData = doc.data();
                     const username = userData.username;
-                    saveHighscore(flags.length, gameID, score, timer, username);
+                    saveHighscore(flags.length, gameID, score, elapsedTime, username);
                 });
             }
         });
